@@ -152,6 +152,16 @@ $(document).ready(function() {
             historyEL.attr("class", "form-control d-block bg-white");
             historyEL.attr("value", history[i]);
             historyEL.click(function() {
+                for (let i = 0; i < 5; i++) {
+                    let forecastElRem = $(`#${i}`)
+                    forecastElRem.remove();
+                    let iconRem = $(`#img${i}`);
+                    iconRem.remove();
+                    let tempRem = $(`#temp${i}`)
+                    tempRem.remove();
+                    let humidRem = $(`#humid${i}`)
+                    humidRem.remove();
+                }
                 searchCity(historyEL.val());
                 if(history.length >= 10) {
                     history.splice(0, 1)
