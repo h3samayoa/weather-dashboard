@@ -20,7 +20,13 @@ $(document).ready(function() {
                 var data = JSON.parse(this.responseText);
                 console.log(data)
 
+                const currentDate = moment(new Date()).format("DD/MM/YYYY");
+                cityName.html(data.name + " " + currentDate);
+                console.log(data.name)
                 
+                let weatherIcon = data.weather[0].icon;
+                
+
             }
         }
         xhttp.open("GET", apiUrl, true);
