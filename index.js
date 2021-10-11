@@ -113,7 +113,15 @@ $(document).ready(function() {
 
     searchBtn.click(function() {
         const city = inputCity.val();
-        console.log(city)
+        var inputBool = true;
+        while (inputBool) {
+            if (city.length == 0) {
+                alert("Please Enter a Message!");
+                return true
+            } else {
+                inputBool = false
+            }
+        }
         searchCity(city);
         for (let i = 0; i < 5; i++) {
             let forecastElRem = $(`#${i}`)
