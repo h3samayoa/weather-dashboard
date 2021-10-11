@@ -2,7 +2,7 @@ $(document).ready(function() {
     const inputCity = $('#citySrch');
     const searchBtn = $('#searchBtn');
     const cityName = $('#city-name');
-    const currentPic = $('#currentPic');
+    const weatherPic = $('#weatherPic');
     const temp = $('#temp');
     const humid = $('#humid');
     const windSpd = $('#windSpd');
@@ -12,6 +12,10 @@ $(document).ready(function() {
     const apiKey = '81c2df482de1c0b8aacf94a4b39b0770';
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityTest}&appid=${apiKey}`;
 
+
+    function tempConverter(temp) {
+        return Math.floor((temp - 273.15) * 1.8 + 32)
+    }
 
     function searchCity(city) {
         var xhttp = new XMLHttpRequest();
@@ -25,7 +29,12 @@ $(document).ready(function() {
                 console.log(data.name)
                 
                 let weatherIcon = data.weather[0].icon;
-                
+
+                weatherPic.attr("src", "https://openweathermap.org/img/wn/" + weatherIcon + "@2x.png")
+
+                temp.html('Temperature: ' + tempConverter(data.main.temp) + "&#176F");
+                humid.html('Humidity: ' + data.main.humidity + "%");
+                windSpd.html('Wind Speed: ' + data.wind.speed + " MPH")
 
             }
         }
